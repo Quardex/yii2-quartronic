@@ -15,12 +15,12 @@ class Quartronic extends Component
     /**
      * @var \quardex\quartronic\qcore\Quartronic
      */
-    protected $_cms;
+    protected $_Q;
 
     public function init()
     {
         parent::init();
-        $this->$_cms = new \quarsintex\quartronic\qcore\Quartronic();
+        $this->_Q = new \quarsintex\quartronic\qcore\Quartronic();
     }
 
     /**
@@ -47,6 +47,6 @@ class Quartronic extends Component
      */
     public function __call($name, $arguments)
     {
-        return call_user_func_array([$this->_mobileDetect, $name], $arguments);
+        return call_user_func_array([$this->_Q, $name], $arguments);
     }
 }
