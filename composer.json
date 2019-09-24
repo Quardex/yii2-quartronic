@@ -16,7 +16,9 @@
     ],
     "require": {
         "yiisoft/yii2": "^2.0",
-	    "quardex/quartronic": "*"
+    },
+    "require-dev": {
+        "quardex/quartronic": "*"
     },
     "autoload": {
         "psr-4": {
