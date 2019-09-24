@@ -1,0 +1,26 @@
+{
+    "name": "quardex/yii2-quartronic",
+    "description": "Yii2 component for Quartronic CMS",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension"," quartronic"],
+    "authors": [
+        {
+            "name": "Andrew Quardex",
+            "email": "quardex@mail.com",
+            "homepage": "https://andrew-quardex.com"
+        },
+        {
+            "name": "Andrey Ugryumov",
+            "email": "quardex@mail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "^2.0",
+	   "quardex/quarsintex": "*"
+    },
+    "autoload": {
+        "psr-4": {
+          "quarsintex\\yii2\\quartronic\\": "src/"
+        }
+    }
+}
