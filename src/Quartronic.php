@@ -49,4 +49,25 @@ class Quartronic extends Component
     {
         return call_user_func_array([$this->_Q, $name], $arguments);
     }
+
+    public function __get($name)
+    {
+      return $this->_Q->__get($name);
+    }
+
+    public function __set($name, $value)
+    {
+      $this->_Q->__set($name, $value);
+    }
+
+    public function __isset($name)
+    {
+     return $this->_Q->__isset($name);
+    }
+
+    public function __unset($name)
+    {
+      $this->_Q->__unset($name);
+    }
+
 }
