@@ -6,7 +6,7 @@ namespace quarsintex\yii2\quartronic;
  * Class Module
  * @package amylabs\demo
  */
-class Module extends \yupe\base\Module
+class Module extends \yii\base\Module
 {
     /**
      *
