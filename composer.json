@@ -16,13 +16,11 @@
     ],
     "require": {
         "yiisoft/yii2": "^2.0",
-        "quardex/quartronic": "*"
-    },
-    "require-dev": {
+	   "quardex/quarsintex": "*"
     },
     "autoload": {
         "psr-4": {
-          "quarsintex\\yii2\\quartronic\\": "src/"
+          "quarsintex\\yii2\\quartronic\\": "QModule/"
         }
     }
 }
