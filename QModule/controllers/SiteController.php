@@ -58,13 +58,13 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
+    public function actionIndex($url = '')
     {
-      $query = \Yii::$app->quartronic->db->from('user');
-      foreach ($query as $value) {
-        $print_t.= print_r($value,true);
-      }
-      return $print_t;
+      $route = !\Yii::$app->urlManager->enablePrettyUrl && isset($_GET['r']) ? $_GET['r'] : $url;
+      return \Yii::$app->quartronic->run([
+          'route'=>$route,
+          'return'=>true,
+      ]);
     }
 
     /**
