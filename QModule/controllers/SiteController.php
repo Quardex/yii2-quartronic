@@ -53,6 +53,12 @@ class SiteController extends Controller
         ];
     }
 
+    public function beforeAction($action)
+    {
+        if ($action->id == 'index') $this->enableCsrfValidation = false;
+        return parent::beforeAction($action);
+    }
+
     /**
      * Displays homepage.
      *
@@ -63,7 +69,8 @@ class SiteController extends Controller
       $route = !\Yii::$app->urlManager->enablePrettyUrl && isset($_GET['r']) ? $_GET['r'] : $url;
       return \Yii::$app->quartronic->run([
           'route'=>$route,
-          'return'=>true,
+          'returnRender'=>true,
+          'webDir'=>\Yii::getAlias('@backend/web/'),
       ]);
     }
 
