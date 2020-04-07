@@ -71,6 +71,7 @@ class SiteController extends Controller
           'route'=>$route,
           'returnRender'=>true,
           'webDir'=>\Yii::getAlias('@backend/web/'),
+          'requireAuth'=>false,
       ]);
     }
 
