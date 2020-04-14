@@ -1,6 +1,7 @@
 <?php
 namespace quarsintex\yii2\quartronic\controllers;
 
+use quarsintex\quartronic\qmodels\QUser;
 use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -60,8 +61,14 @@ class SiteController extends Controller
      */
     public function actionIndex($url = '')
     {
-      $route = !\Yii::$app->urlManager->enablePrettyUrl && isset($_GET['r']) ? $_GET['r'] : $url;
-      return \Yii::$app->quartronic->run([
+      $route = !Yii::$app->urlManager->enablePrettyUrl && isset($_GET['r']) ? $_GET['r'] : $url;
+      Yii::$app->quartronic;
+      $user = new \quarsintex\quartronic\qmodels\QUser();
+      if (!empty(Yii::$app->user->identity)) {
+          $user->username = Yii::$app->user->identity->username;
+          Yii::$app->quartronic->defineUser($user);
+      }
+      return Yii::$app->quartronic->run([
           'route'=>$route,
           'returnRender'=>true,
           'webDir'=>\Yii::getAlias('@backend/web/'),
@@ -102,5 +109,9 @@ class SiteController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
+    }
+
+    public function actionUpdate() {
+        (new \quarsintex\quartronic\qconsole\QSystemController('update'))->actUpdate();
     }
 }
