@@ -1,10 +1,8 @@
 <?php
 namespace quarsintex\yii2\quartronic\controllers;
 
-use quarsintex\quartronic\qmodels\QUser;
 use Yii;
 use yii\web\Controller;
-use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
 
@@ -67,6 +65,9 @@ class SiteController extends Controller
       if (!empty(Yii::$app->user->identity)) {
           $user->username = Yii::$app->user->identity->username;
           Yii::$app->quartronic->defineUser($user);
+      }
+      if (trim($route,'/') == 'update') {
+          $this->actionUpdate();
       }
       return Yii::$app->quartronic->run([
           'route'=>$route,
