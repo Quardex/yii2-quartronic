@@ -112,7 +112,6 @@ class SiteController extends Controller
     }
 
     public function actionUpdate() {
-        echo "Start updating...\n";
         \quarsintex\quartronic\qcore\QUpdater::run(__DIR__.'/../../../');
     }
 }
