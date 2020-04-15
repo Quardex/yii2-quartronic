@@ -60,14 +60,14 @@ class SiteController extends Controller
     public function actionIndex($url = '')
     {
       $route = !Yii::$app->urlManager->enablePrettyUrl && isset($_GET['r']) ? $_GET['r'] : $url;
+      if (trim($route,'/') == 'update') {
+          $this->actionUpdate();
+      }
       Yii::$app->quartronic;
       $user = new \quarsintex\quartronic\qmodels\QUser();
       if (!empty(Yii::$app->user->identity)) {
           $user->username = Yii::$app->user->identity->username;
           Yii::$app->quartronic->defineUser($user);
-      }
-      if (trim($route,'/') == 'update') {
-          $this->actionUpdate();
       }
       return Yii::$app->quartronic->run([
           'route'=>$route,
