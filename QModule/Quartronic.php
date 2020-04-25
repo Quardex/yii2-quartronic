@@ -16,6 +16,8 @@ class Quartronic extends Component
      * @var \quardex\quartronic\qcore\Quartronic
      */
     protected $_Q;
+    public $webDir = __DIR__.'/../../../../backend/web/';
+    public $webPath = '/backend/';
 
     public function init()
     {

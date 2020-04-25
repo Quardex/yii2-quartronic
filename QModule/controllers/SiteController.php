@@ -72,7 +72,8 @@ class SiteController extends Controller
       return Yii::$app->quartronic->run([
           'route'=>$route,
           'returnRender'=>true,
-          'webDir'=>\Yii::getAlias('@backend/web/'),
+          'webPath'=>Yii::$app->quartronic->webPath,
+          'webDir'=>Yii::$app->quartronic->webDir,
           'requireAuth'=>false,
       ]);
     }
