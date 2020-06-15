@@ -48,7 +48,7 @@ class SiteController extends Controller
 
     public function beforeAction($action)
     {
-        if ($action->id == 'index') $this->enableCsrfValidation = false;
+        if ($action->id == 'index' || $action->id == 'logout') $this->enableCsrfValidation = false;
         return parent::beforeAction($action);
     }
 
@@ -64,8 +64,9 @@ class SiteController extends Controller
           $this->actionUpdate();
       }
       Yii::$app->quartronic;
-      $user = new \quarsintex\quartronic\qmodels\QUser();
+
       if (!empty(Yii::$app->user->identity)) {
+          $user = new \quarsintex\quartronic\qmodels\QUser();
           $user->username = Yii::$app->user->identity->username;
           Yii::$app->quartronic->defineUser($user);
       }
