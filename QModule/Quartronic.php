@@ -2,6 +2,7 @@
 
 namespace quarsintex\yii2\quartronic;
 
+use Yii;
 use yii\base\Component;
 
 require_once(\Yii::getAlias('@vendor/quardex/quartronic/qcore/Quartronic.php'));
