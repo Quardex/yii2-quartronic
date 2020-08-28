@@ -22,7 +22,15 @@ class Quartronic extends Component
     public function init()
     {
         parent::init();
-        $this->_Q = new \quarsintex\quartronic\qcore\Quartronic();
+        $this->_Q = new \quarsintex\quartronic\qcore\Quartronic([
+            'db'=>[
+                'driver'    => Yii::$app->db->getDriverName(),
+                'database'  => $this->getDsnAttribute('dbname'),
+                'host'      => $this->getDsnAttribute('host'),
+                'username'  => Yii::$app->db->username,
+                'password'  => Yii::$app->db->password,
+            ]
+        ]);
     }
 
     /**
@@ -72,7 +80,7 @@ class Quartronic extends Component
       $this->_Q->__unset($name);
     }
 
-    public function getDsnAttribute($name)
+    private function getDsnAttribute($name)
     {
         if (preg_match('/' . $name . '=([^;]*)/', \Yii::$app->getDb()->dsn, $match)) {
             return $match[1];
