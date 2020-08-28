@@ -72,4 +72,12 @@ class Quartronic extends Component
       $this->_Q->__unset($name);
     }
 
+    public function getDsnAttribute($name)
+    {
+        if (preg_match('/' . $name . '=([^;]*)/', \Yii::$app->getDb()->dsn, $match)) {
+            return $match[1];
+        } else {
+            return null;
+        }
+    }
 }

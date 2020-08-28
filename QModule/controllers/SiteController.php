@@ -76,6 +76,14 @@ class SiteController extends Controller
           'webPath'=>Yii::$app->quartronic->webPath,
           'webDir'=>Yii::$app->quartronic->webDir,
           'requireAuth'=>false,
+          'db'=>[
+            'driver'    => Yii::$app->db->getDriverName(),
+            'database'  => Yii::$app->quartronic->getDsnAttribute('dbname'),
+            'host'      => Yii::$app->quartronic->getDsnAttribute('host'),
+            'username'  => Yii::$app->db->username,
+            'password'  => Yii::$app->db->password,
+            'password'  => Yii::$app->db->password,
+          ]
       ]);
     }
 
