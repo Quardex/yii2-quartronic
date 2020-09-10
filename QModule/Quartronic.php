@@ -30,6 +30,8 @@ class Quartronic extends Component
                 'host'      => $this->getDsnAttribute('host'),
                 'username'  => Yii::$app->db->username,
                 'password'  => Yii::$app->db->password,
+                'charset'   => 'utf8mb4',
+                'collation' => 'utf8mb4_unicode_ci',
             ]
         ]);
     }
