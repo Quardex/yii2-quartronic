@@ -17,13 +17,13 @@ class Quartronic extends Component
      * @var \quardex\quartronic\qcore\Quartronic
      */
     protected $_Q;
-    public $webDir = __DIR__.'/../../../../backend/web/';
-    public $webPath = '/';
+    protected $params;
 
     public function init()
     {
         parent::init();
-        $this->_Q = new \quarsintex\quartronic\qcore\Quartronic([
+
+        $defaultParams = [
             'db'=>[
                 'driver'    => Yii::$app->db->getDriverName(),
                 'database'  => $this->getDsnAttribute('dbname'),
@@ -32,8 +32,12 @@ class Quartronic extends Component
                 'password'  => Yii::$app->db->password,
                 'charset'   => 'utf8mb4',
                 'collation' => 'utf8mb4_unicode_ci',
-            ]
-        ]);
+            ],
+            'webDir' => __DIR__.'/../../../../backend/web/',
+            'webPath' => '/',
+        ];
+
+        $this->_Q = new \quarsintex\quartronic\qcore\Quartronic(array_merge($defaultParams, $this->params));
     }
 
     /**
@@ -65,22 +69,26 @@ class Quartronic extends Component
 
     public function __get($name)
     {
-      return $this->_Q->__get($name);
+        return $this->_Q ? $this->_Q->__get($name) : $this->params[$name];
     }
 
     public function __set($name, $value)
     {
-      $this->_Q->__set($name, $value);
+        $this->_Q ? $this->_Q->__set($name, $value) : $this->params[$name] = $value;
     }
 
     public function __isset($name)
     {
-     return $this->_Q->__isset($name);
+        return $this->_Q ? $this->_Q->__isset($name) : isset($this->params[$name]);
     }
 
     public function __unset($name)
     {
-      $this->_Q->__unset($name);
+        if ($this->_Q) {
+            $this->_Q->__unset($name);
+        } else {
+            unset($this->params[$name]);
+        }
     }
 
     private function getDsnAttribute($name)
