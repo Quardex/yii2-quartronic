@@ -23,16 +23,19 @@ class Quartronic extends Component
     {
         parent::init();
 
+        $db = [
+            'driver'    => Yii::$app->db->getDriverName(),
+            'database'  => $this->getDsnAttribute('dbname'),
+            'host'      => $this->getDsnAttribute('host'),
+            'username'  => Yii::$app->db->username,
+            'password'  => Yii::$app->db->password,
+            'charset'   => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+        ];
+
         $defaultParams = [
-            'db'=>[
-                'driver'    => Yii::$app->db->getDriverName(),
-                'database'  => $this->getDsnAttribute('dbname'),
-                'host'      => $this->getDsnAttribute('host'),
-                'username'  => Yii::$app->db->username,
-                'password'  => Yii::$app->db->password,
-                'charset'   => 'utf8mb4',
-                'collation' => 'utf8mb4_unicode_ci',
-            ],
+            'db'=>$db,
+            'sysDB'=>$db,
             'webDir' => __DIR__.'/../../../../backend/web/',
             'webPath' => '/',
         ];
